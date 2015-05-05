@@ -4,5 +4,5 @@ class Institute < ActiveRecord::Base
 
   has_many :votes
 
-  validatets :name, presence: true
+  validates :name, presence: true
 end
