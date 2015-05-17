@@ -1,0 +1,19 @@
+<p>I'm in Institute ecit</p>
+.row
+  .col-lg-6.col-lg-offset-3
+    %table.table.table-condensed
+      %tr
+        %th= 'Imię'
+        %th= 'Nazwisko'
+        %th= 'Details'
+        %th
+      -@lecturers.each do |lecturer|
+        %tr
+          %td=lecturer.firstname
+          %td=lecturer.lastname
+          %td=link_to "Show", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
+          -#%td=link_to "Edit", edit_institute_path(institute[:id]), class: 'btn btn-primary'
+          %td=link_to "Usun z inst", employment_path(@employments.find_by(lecturer_id: lecturer.id).id), :method => 'delete'
+.row
+  .col-lg-6.col-lg-offset-3
+    -#=link_to "New", new_institute_path, class: 'btn btn-primary'

@@ -1,1 +1,15 @@
-<p>I'm in Institute index</p>
+.row
+  .col-lg-6.col-lg-offset-3
+    %table.table.table-condensed
+      %tr
+        %th= 'Nazwa instytutu'
+        %th= 'Details'
+        %th
+      -@institutes.each do |institute|
+        %tr
+          %td= institute.name
+          %td=link_to "Show", institute_path(institute[:id]), class: 'btn btn-primary'
+          %td=link_to "Edit", edit_institute_path(institute[:id]), class: 'btn btn-primary'
+.row
+  .col-lg-6.col-lg-offset-3
+    =link_to "New", new_institute_path, class: 'btn btn-primary'
