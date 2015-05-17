@@ -13,7 +13,12 @@
           %td=lecturer.lastname
           %td=link_to "Show", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
           -#%td=link_to "Edit", edit_institute_path(institute[:id]), class: 'btn btn-primary'
-          %td=link_to "Usun z inst", employment_path(@employments.find_by(lecturer_id: lecturer.id).id), :method => 'delete'
+          %td=link_to "Usun z inst", employment_path(@employments.find_by(lecturer_id: lecturer.id).id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }
 .row
   .col-lg-6.col-lg-offset-3
     -#=link_to "New", new_institute_path, class: 'btn btn-primary'
+    -#= simple_form_for :lecturer, html: { class: 'form-horizontal' } do |f|
+    -#  .inputs
+    -#    = f.input :id, collection: @institutes, label: 'Instytuty/Katedry'
+    -#  .action
+    -#    = f.button :submit, class: 'btn btn-primary'

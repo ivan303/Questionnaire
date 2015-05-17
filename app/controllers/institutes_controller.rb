@@ -14,9 +14,12 @@ class InstitutesController < ApplicationController
 		@institute = Institute.find(params[:id])
 		@lecturers = @institute.lecturers
 		@employments = @institute.employments
+
+		# @other_lecturers =
 	end
 
 	def new
+		@institute = Institute.new
 	end
 
 	def create
