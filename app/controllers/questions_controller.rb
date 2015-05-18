@@ -7,6 +7,10 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
+  def edit
+    @question = Question.find(params[:id])
+  end
+
   def create
     question = Question.new(question_params)
     if question.valid?
@@ -14,6 +18,19 @@ class QuestionsController < ApplicationController
       redirect_to questions_path
     else
       # TODO
+    end
+  end
+
+  def update
+    question = Question.find(params[:id])
+    question.content = question_params[:content]
+    if question.valid?
+      question.save
+      flash[:success] = 'Pytanie pomyślnie zmodyfikowane'
+      redirect_to questions_path
+    else
+      flash[:error] = 'Pytania nie udało się zmodyfikować'
+      redirect_to questions_path
     end
   end
 

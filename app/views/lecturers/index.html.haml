@@ -2,17 +2,15 @@
   .col-lg-8.col-lg-offset-2
     %table.table.table-condensed
       %tr
-        %th= 'Nazwisko'
-        %th= 'Imię'
-        %th= 'Details'
-        %th
+        %th= 'Nazwisko i imię'
+        %th= 'Akcje'
       -@lecturers.each do |lecturer|
         %tr
-          %td= lecturer.lastname
-          %td= lecturer.firstname
-          %td=link_to "Show", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
-          -#%td=link_to "Edit", edit_institute_path(institute[:id]), class: 'btn btn-primary'
-          %td=link_to "Delete", lecturer_path(lecturer.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }
+          %td= lecturer.lastname + " " + lecturer.firstname
+          %td
+            =link_to "Szczegóły", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
+            =link_to "Edytuj", edit_lecturer_path(lecturer[:id]), class: 'btn btn-primary'
+            =link_to "Usuń", lecturer_path(lecturer.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
 .row
   .col-lg-8.col-lg-offset-2
-    =link_to "New", new_lecturer_path, class: 'btn btn-primary'
+    =link_to "Dodaj wykładowcę", new_lecturer_path, class: 'btn btn-primary'

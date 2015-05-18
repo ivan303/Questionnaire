@@ -1,6 +1,7 @@
-<p>I'm in Institute new</p>
-= simple_form_for @institute do |f|
-  .inputs
-    = f.input :name
-  .actions
-    = f.submit "Save"
+.row
+  .col-lg-4.col-lg-offset-4
+    = simple_form_for @institute do |f|
+      .inputs
+        = f.input :name, label: "Nazwa instytutu"
+      .actions
+        = f.submit "Dodaj", class: "btn btn-primary"
