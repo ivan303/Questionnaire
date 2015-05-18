@@ -1,5 +1,5 @@
 .row
-  .col-lg-6.col-lg-offset-3
+  .col-lg-8.col-lg-offset-2
     %table.table.table-condensed
       %tr
         %th= 'Nazwisko'
@@ -14,5 +14,5 @@
           -#%td=link_to "Edit", edit_institute_path(institute[:id]), class: 'btn btn-primary'
           %td=link_to "Delete", lecturer_path(lecturer.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }
 .row
-  .col-lg-6.col-lg-offset-3
+  .col-lg-8.col-lg-offset-2
     =link_to "New", new_lecturer_path, class: 'btn btn-primary'

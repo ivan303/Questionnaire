@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :questionnaires, only: [:index, :show, :create, :update]
   resources :institutes
   resources :lecturers
+  resources :questions, only: [:index, :new, :create, :destroy]
   resources :employments, only: [:destroy]
 
 end

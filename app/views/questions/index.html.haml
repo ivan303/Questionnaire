@@ -1,0 +1,15 @@
+.row
+  .col-lg-8.col-lg-offset-2
+    %table.table.table-condensed
+      %tr
+        %th= 'Treść'
+        %th= 'Details'
+        %th
+      -@questions.each do |question|
+        %tr
+          %td= question.content
+          -#%td=link_to "Edit", edit_institute_path(institute[:id]), class: 'btn btn-primary'
+          %td=link_to "Delete", question_path(question.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }
+.row
+  .col-lg-8.col-lg-offset-2
+    =link_to "New", new_question_path, class: 'btn btn-primary'

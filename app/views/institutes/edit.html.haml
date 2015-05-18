@@ -1,24 +1,19 @@
-<p>I'm in Institute ecit</p>
 .row
-  .col-lg-6.col-lg-offset-3
+  .col-lg-8.col-lg-offset-2
     %table.table.table-condensed
       %tr
-        %th= 'Imię'
-        %th= 'Nazwisko'
-        %th= 'Details'
-        %th
+        %th= 'Nazwisko i imię'
+        %th{colspan: 2}= 'Actions'
       -@lecturers.each do |lecturer|
         %tr
-          %td=lecturer.firstname
-          %td=lecturer.lastname
-          %td=link_to "Show", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
-          -#%td=link_to "Edit", edit_institute_path(institute[:id]), class: 'btn btn-primary'
-          %td=link_to "Usun z inst", employment_path(@employments.find_by(lecturer_id: lecturer.id).id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }
+          %td=lecturer.lastname + ' ' + lecturer.firstname
+          %td
+            =link_to "Show", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
+            =link_to "Usun z instytutu", employment_path(@employments.find_by(lecturer_id: lecturer.id).id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
 .row
-  .col-lg-6.col-lg-offset-3
-    -#=link_to "New", new_institute_path, class: 'btn btn-primary'
-    -#= simple_form_for :lecturer, html: { class: 'form-horizontal' } do |f|
-    -#  .inputs
-    -#    = f.input :id, collection: @institutes, label: 'Instytuty/Katedry'
-    -#  .action
-    -#    = f.button :submit, class: 'btn btn-primary'
+  .col-lg-8.col-lg-offset-2
+    = simple_form_for @institute, :method => :patch, html: { class: 'form-horizontal' } do |f|
+      .inputs
+        = f.input :id, collection: @other_lecturers, label: 'Instytuty/Katedry', :label_method => lambda { |lect| "#{lect.lastname} #{lect.firstname}" }
+      .action
+        = f.button :submit, class: 'btn btn-primary'

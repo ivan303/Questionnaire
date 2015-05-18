@@ -15,3 +15,23 @@
  */
 
  @import "bootstrap";
+
+body {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+table tr td {
+  text-align: center;
+  //vertical-align: text-bottom;
+}
+
+td {
+  vertical-align: middle;
+}
+
+table tr th {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 16px;
+}
