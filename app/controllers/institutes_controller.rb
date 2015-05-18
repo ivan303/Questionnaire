@@ -15,7 +15,7 @@ class InstitutesController < ApplicationController
 		@lecturers = @institute.lecturers
 		@employments = @institute.employments
 
-		@lecturer = Lecturer.new
+		# @lecturer = Lecturer.new
 
 		@other_lecturers = Lecturer.all - @lecturers
 	end
@@ -28,24 +28,26 @@ class InstitutesController < ApplicationController
 		institute = Institute.new(institute_params)
 		if institute.valid?
 			institute.save
-			flash[:success] = 'Institute successfully created'
+			flash[:success] = 'Instytut pomyślnie utworzony'
 			redirect_to institutes_path
 		else
-			# TODO
+			flash[:error] = 'Instytutu nie udało się utworzyć'
+			redirect_to institutes_path
 		end
 	end
 
 	def update
 		institute = Institute.find(params[:id])
 		employment = Employment.new
-		# byebug
 		employment.institute = institute
-		employment.lecturer = Lecturer.find(new_employment_params[:id].to_i)
+		employment.lecturer = Lecturer.find(new_employment_params[:lecturers].to_i)
 		if employment.valid?
 			employment.save
+			flash[:success] = 'Wykładowca pomyślnie dodany do instytutu'
 			redirect_to edit_institute_path(institute.id)
 		else
-			# TODO
+			flash[:error] = 'Wykładowcy nie udało się dodać do instytutu'
+			redirect_to edit_institute_path(institute.id)
 		end
 
 	end
@@ -63,7 +65,7 @@ class InstitutesController < ApplicationController
 		end
 
 		def new_employment_params
-			params.require(:institute).permit(:id)
+			params.require(:institute).permit(:lecturers)
 		end
 
 end

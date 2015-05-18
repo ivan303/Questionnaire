@@ -8,12 +8,12 @@
         %tr
           %td=lecturer.lastname + ' ' + lecturer.firstname
           %td
-            =link_to "Show", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
-            =link_to "Usun z instytutu", employment_path(@employments.find_by(lecturer_id: lecturer.id).id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
+            =link_to "Szczegóły", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
+            =link_to "Usuń z instytutu", employment_path(@employments.find_by(lecturer_id: lecturer.id).id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
 .row
-  .col-lg-8.col-lg-offset-2
+  .col-lg-4.col-lg-offset-4
     = simple_form_for @institute, :method => :patch, html: { class: 'form-horizontal' } do |f|
       .inputs
-        = f.input :id, collection: @other_lecturers, label: 'Instytuty/Katedry', :label_method => lambda { |lect| "#{lect.lastname} #{lect.firstname}" }
+        = f.input :lecturers, collection: @other_lecturers, label: 'Wykładowcy spoza instytutu', :label_method => lambda { |lect| "#{lect.lastname} #{lect.firstname}" }
       .action
-        = f.button :submit, class: 'btn btn-primary'
+        = f.button :submit, 'Dodaj wykładowcę', class: 'btn btn-primary'
