@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :questions, only: [:index, :new, :create, :destroy, :edit, :update]
   resources :employments, only: [:destroy]
   resources :forms
+  resources :votes
 
 end

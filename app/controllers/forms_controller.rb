@@ -12,6 +12,9 @@ class FormsController < ApplicationController
       )
     end
 
+    # byebug
+    # request.remote_ip
+
     if form.valid?
       form.save
     else

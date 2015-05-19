@@ -1,0 +1,21 @@
+.row
+  .col-lg-8.col-lg-offset-2
+    %table.table.table-condensed
+      %tr
+        %th= 'Instytut'
+        %th= 'Wykładowca'
+        %th= 'Pytanie'
+        %th= 'IP'
+        %th
+      -@votes.each do |vote|
+        %tr
+          %td= vote.institute.name
+          %td= vote.lecturer.lastname + " " + vote.lecturer.firstname
+          %td= vote.question.content
+          %td= vote.ip
+          %td
+            -#=link_to "Edytuj", edit_question_path(question[:id]), class: 'btn btn-primary'
+            -#=link_to "Usuń", question_path(question.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
+-#.row
+-#  .col-lg-8.col-lg-offset-2
+-#    =link_to "Nowe pytanie", new_question_path, class: 'btn btn-primary'
