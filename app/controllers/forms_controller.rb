@@ -8,7 +8,8 @@ class FormsController < ApplicationController
       form.votes << Vote.new(
           lecturer: Lecturer.find(lecturer[1][:id].to_i),
           institute: institute,
-          question_id: questions.shift["id"]
+          question_id: questions.shift["id"],
+          ip: request.remote_ip
       )
     end
 
