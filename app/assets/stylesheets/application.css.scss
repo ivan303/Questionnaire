@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require rails_bootstrap_forms
  */
 
  @import "bootstrap";
@@ -33,5 +34,13 @@ td {
 table tr th {
   text-align: center;
   vertical-align: middle;
+  font-size: 16px;
+}
+
+.form-centered {
+  text-align: center;
+}
+
+.form-group .control-label {
   font-size: 16px;
 }

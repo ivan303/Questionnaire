@@ -5,14 +5,19 @@ class PollsController < ApplicationController
   end
 
   def create
-    redirect_to  questionnaire_path(params[:institute][:id])
+    redirect_to  poll_path(params[:institute][:id])
   end
 
   def show
     @institute = Institute.find(params[:id])
-    @questions = Question.all
+    @form = Form.new
+    @questions = Question.all.as_json
+
+    @questions.each do |question|
+      @form.votes.build(institute: @institute)
+    end
+
     @lecturers = @institute.lecturers
-    # byebug
   end
 
   def update

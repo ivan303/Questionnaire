@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe PollDecorator do
+describe FormDecorator do
 end

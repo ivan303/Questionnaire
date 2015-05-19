@@ -1,8 +1,13 @@
-<p>I'm in Questionnaire show</p>
-=simple_form_for @institute, :method => :patch, html: { class: 'form-horizontal' } do |f|
-  -@questions.each do |question|
-    %p= question.content
-    .inputs
-      = f.input :id, collection: @lecturers, :label_method => lambda { |lect| "#{lect.lastname} #{lect.firstname}" }
-  .action
-    = f.button :submit, 'Dodaj wykładowcę', class: 'btn btn-primary'
+.row
+  .col-lg-8.col-lg-offset-2.form-centered
+    =bootstrap_form_for @form, :method => :post, :url => forms_path do |f|
+      .inputs
+        =hidden_field_tag(:institute_id, @institute.id)
+        =f.fields_for :votes do |g|
+          -q = @questions.shift
+          =g.collection_select :id, @lecturers, :id,  lambda { |lect| "#{lect.lastname} #{lect.firstname}"  },  label: "#{q['content']}"
+          %br
+      .actions
+        =f.submit "Głosuj", class: "btn btn-lg btn-primary"
+
+-#lambda { |a| "id#{q["id"]}" }   ew można dodać jako value_method połącznie id pytania z id lecrurera
