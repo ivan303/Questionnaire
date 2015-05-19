@@ -16,6 +16,7 @@ gem 'simple_form', '~> 3.1.0rc'
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'haml-rails'
 gem 'ffaker'
+gem 'bootstrap_form'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
