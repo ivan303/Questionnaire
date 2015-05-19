@@ -1,4 +1,4 @@
-class QuestionnairesController < ApplicationController
+class PollsController < ApplicationController
 
   def index
     @institutes = Institute.all
@@ -10,6 +10,9 @@ class QuestionnairesController < ApplicationController
 
   def show
     @institute = Institute.find(params[:id])
+    @questions = Question.all
+    @lecturers = @institute.lecturers
+    # byebug
   end
 
   def update
