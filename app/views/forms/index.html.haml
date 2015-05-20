@@ -1,0 +1,28 @@
+.row
+  .col-lg-2
+    = bootstrap_form_tag url: '/forms', :method => 'get' do |f|
+      -#= f.text_field :lastname_search, label: "Nazwisko"#, params[:search]
+      -#= f.text_field :firstname_search, label: "Imię"
+      = f.text_field :institute_search, label: "Instytut"
+      = f.text_field :ip_search, label: "IP"
+      = submit_tag "Szukaj", :name => nil, class: "btn btn-primary"
+  .col-lg-10
+    -unless @forms.blank?
+      %table.table.table-condensed
+        %col{:width => 200}
+        %col{:width => 80}
+        %tr
+          %th= link_to 'Instytut', :sort => 'institute_id'
+          %th= link_to 'IP', :sort => 'ip'
+          %th
+        -@forms.each do |form|
+          %tr
+            %td= form.votes.first.institute.name
+            %td= form.votes.last.ip
+            %td
+              =link_to "Szczegóły", form_path(form[:id]), class: 'btn btn-primary'
+              =link_to "Usuń", form_path(form.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
+    -else
+      %h3.form-centered Brak kwestionariuszy
+    .col-lg-offset-5.digg_pagination.form-centered
+      =will_paginate @forms, :container => false
