@@ -2,6 +2,8 @@
   .col-lg-8.col-lg-offset-2
     -unless @questions.blank?
       %table.table.table-condensed
+        %col{ :width => 500 }
+        %col{ :width => 150 }
         %tr
           %th= 'Treść'
           %th= 'Akcje'
