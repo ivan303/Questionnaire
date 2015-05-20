@@ -5,7 +5,7 @@ class VotesController < ApplicationController
                  .firstname_search(params[:firstname_search])
                  .institute_search(params[:institute_search])
                  .ip_search(params[:ip_search])
-                 .paginate(:per_page => 20, :page => params[:page])
+                 .paginate(:per_page => 30, :page => params[:page])
   end
 
 
