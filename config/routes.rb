@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root  to: redirect('/polls')
 
+  get '/admin', to: redirect('/institutes')
+
   resources :polls, only: [:index, :show, :create, :update]
   resources :institutes
   resources :lecturers

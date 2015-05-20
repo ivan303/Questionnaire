@@ -1,5 +1,8 @@
 class FormsController < ApplicationController
 
+  layout "admin"
+  before_filter :authenticate
+
   def create
     questions = Question.all.as_json
     institute = Institute.find(params[:institute_id])

@@ -1,5 +1,8 @@
 class EmploymentsController < ApplicationController
 
+  layout "admin"
+  before_filter :authenticate
+
   def destroy
     institute_id = Employment.find(params[:id]).institute_id
     Employment.delete(params[:id])

@@ -1,5 +1,8 @@
 class LecturersController < ApplicationController
 
+  layout "admin"
+  before_filter :authenticate
+
   def index
     @lecturers = Lecturer.all.order(:lastname)
   end

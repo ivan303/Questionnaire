@@ -1,5 +1,8 @@
 class VotesController < ApplicationController
 
+  layout "admin"
+  before_filter :authenticate
+
   def index
     @votes = Vote.lastname_search(params[:lastname_search])
                  .firstname_search(params[:firstname_search])

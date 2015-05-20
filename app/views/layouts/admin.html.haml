@@ -1,0 +1,44 @@
+!!!
+%html{ lang: 'en' }
+  %head
+    %meta{ charset: 'utf-8' }/
+    %meta{ content: 'IE=Edge,chrome=1', 'http-equiv' => 'X-UA-Compatible' }/
+    %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }/
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+
+  %body
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .container.col-lg-8.col-lg-offset-2
+        .navbar-header
+          %span.navbar-brand Ankieta
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav.navbar-right
+            %li.active
+              = link_to "Home", root_path
+            %li.dropdown.active
+              %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown"}
+                = "Nawiguj"
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to "Instytuty", institutes_path
+                %li
+                  = link_to "Wykładowcy", lecturers_path
+                %li
+                  = link_to "Pytania", questions_path
+                %li.divider
+                %li
+                  = link_to "Kwestionariusze", forms_path
+                %li
+                  = link_to "Głosy", votes_path
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          - flash.each do |type, message|
+            .alert{ class: bootstrap_class_for(type)}
+              = message
+
+      = yield
+    = debug(params) if Rails.env.development?

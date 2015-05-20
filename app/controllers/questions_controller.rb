@@ -1,4 +1,8 @@
 class QuestionsController < ApplicationController
+
+  layout "admin"
+  before_filter :authenticate
+
   def index
     @questions = Question.all
   end
