@@ -14,10 +14,10 @@
         %col{:width => 450}
         %col{:width => 80}
         %tr
-          %th= 'Instytut'
-          %th= 'Wykładowca'
-          %th= 'Pytanie'
-          %th= 'IP'
+          %th= link_to 'Instytut', :sort => 'institute_id'
+          %th= link_to 'Wykładowca', :sort => 'lecturer_id'
+          %th= link_to 'Pytanie', :sort => 'question_id'
+          %th= link_to 'IP', :sort => 'ip'
           %th
         -@votes.each do |vote|
           %tr

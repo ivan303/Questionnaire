@@ -1,7 +1,7 @@
 class FormsController < ApplicationController
 
   layout "admin"
-  before_filter :authenticate
+  before_filter :authenticate, except: :create
 
   def create
     questions = Question.all.as_json
@@ -15,9 +15,6 @@ class FormsController < ApplicationController
           ip: request.remote_ip
       )
     end
-
-    # byebug
-    # request.remote_ip
 
     if form.valid?
       form.save

@@ -39,5 +39,21 @@ class Vote < ActiveRecord::Base
     end
   end
 
+  def self.custom_sort (sort_by)
+    unless sort_by.blank?
+      # byebug
+      # Vote.all
+      case sort_by
+        when "institute_id" then Vote.joins('JOIN institutes ON institutes.id = votes.institute_id').order('institutes.name')
+        when "lecturer_id" then Vote.joins('JOIN lecturers ON lecturers.id = votes.lecturer_id').order('lecturers.lastname')
+        when "question_id" then Vote.joins('JOIN questions ON questions.id = votes.question_id').order('questions.content')
+        when "ip" then Vote.order('ip')
+      end
+    else
+      # byebug
+      Vote.all
+    end
+  end
+
 
 end
