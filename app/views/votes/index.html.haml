@@ -1,5 +1,12 @@
 .row
-  .col-lg-8.col-lg-offset-2
+  .col-lg-4
+    = bootstrap_form_tag url: '/votes', :method => 'get' do |f|
+      = f.text_field :lastname_search, label: "Nazwisko"#, params[:search]
+      = f.text_field :firstname_search, label: "Imię"
+      = f.text_field :institute_search, label: "Instytut"
+      = f.text_field :ip_search, label: "IP"
+      = submit_tag "Szukaj", :name => nil, class: "btn btn-primary"
+  .col-lg-8
     %table.table.table-condensed
       %tr
         %th= 'Instytut'
@@ -14,8 +21,9 @@
           %td= vote.question.content
           %td= vote.ip
           %td
-            -#=link_to "Edytuj", edit_question_path(question[:id]), class: 'btn btn-primary'
-            -#=link_to "Usuń", question_path(question.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
+    =will_paginate @votes
+-#=link_to "Edytuj", edit_question_path(question[:id]), class: 'btn btn-primary'
+-#=link_to "Usuń", question_path(question.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
 -#.row
 -#  .col-lg-8.col-lg-offset-2
 -#    =link_to "Nowe pytanie", new_question_path, class: 'btn btn-primary'
