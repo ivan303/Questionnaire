@@ -1,15 +1,18 @@
 .row
   .col-lg-8.col-lg-offset-2
-    %table.table.table-condensed
-      %tr
-        %th= 'Nazwa instytutu/katedry'
-        %th{colspan: 2}= 'Akcje'
-      -@institutes.each do |institute|
+    -unless @institutes.blank?
+      %table.table.table-condensed
         %tr
-          %td= institute.name
-          %td
-            =link_to "Pokaż", institute_path(institute[:id]), class: 'btn btn-primary'
-            =link_to "Edytuj", edit_institute_path(institute[:id]), class: 'btn btn-primary'
+          %th= 'Nazwa instytutu/katedry'
+          %th{colspan: 2}= 'Akcje'
+        -@institutes.each do |institute|
+          %tr
+            %td= institute.name
+            %td
+              =link_to "Pokaż", institute_path(institute[:id]), class: 'btn btn-primary'
+              =link_to "Edytuj", edit_institute_path(institute[:id]), class: 'btn btn-primary'
+    -else
+      %h3.form-centered Brak instytutów
 .row
   .col-lg-8.col-lg-offset-2
     =link_to "Nowy instytut/katedra", new_institute_path, class: 'btn btn-primary'

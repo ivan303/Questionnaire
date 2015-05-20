@@ -1,16 +1,19 @@
 .row
   .col-lg-8.col-lg-offset-2
-    %table.table.table-condensed
-      %tr
-        %th= 'Nazwisko i imię'
-        %th= 'Akcje'
-      -@lecturers.each do |lecturer|
+    -unless @lecturers.blank?
+      %table.table.table-condensed
         %tr
-          %td= lecturer.lastname + " " + lecturer.firstname
-          %td
-            =link_to "Szczegóły", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
-            =link_to "Edytuj", edit_lecturer_path(lecturer[:id]), class: 'btn btn-primary'
-            =link_to "Usuń", lecturer_path(lecturer.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
+          %th= 'Nazwisko i imię'
+          %th= 'Akcje'
+        -@lecturers.each do |lecturer|
+          %tr
+            %td= lecturer.lastname + " " + lecturer.firstname
+            %td
+              =link_to "Szczegóły", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
+              =link_to "Edytuj", edit_lecturer_path(lecturer[:id]), class: 'btn btn-primary'
+              =link_to "Usuń", lecturer_path(lecturer.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
+    -else
+      %h3.form-centered Brak wykładowców
 .row
   .col-lg-8.col-lg-offset-2
     =link_to "Dodaj wykładowcę", new_lecturer_path, class: 'btn btn-primary'

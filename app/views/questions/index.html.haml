@@ -1,15 +1,18 @@
 .row
   .col-lg-8.col-lg-offset-2
-    %table.table.table-condensed
-      %tr
-        %th= 'Treść'
-        %th= 'Akcje'
-      -@questions.each do |question|
+    -unless @questions.blank?
+      %table.table.table-condensed
         %tr
-          %td= question.content
-          %td
-            =link_to "Edytuj", edit_question_path(question[:id]), class: 'btn btn-primary'
-            =link_to "Usuń", question_path(question.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
+          %th= 'Treść'
+          %th= 'Akcje'
+        -@questions.each do |question|
+          %tr
+            %td= question.content
+            %td
+              =link_to "Edytuj", edit_question_path(question[:id]), class: 'btn btn-primary'
+              =link_to "Usuń", question_path(question.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
+    -else
+      %h3.form-centered Brak pytań
 .row
   .col-lg-8.col-lg-offset-2
     =link_to "Nowe pytanie", new_question_path, class: 'btn btn-primary'
