@@ -7,9 +7,6 @@ class InstitutesController < ApplicationController
 		@institutes = Institute.all.order(:name)
 	end
 
-	def show
-	end
-
 	def new
 		@institute = Institute.new
 	end

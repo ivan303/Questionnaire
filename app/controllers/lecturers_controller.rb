@@ -8,6 +8,7 @@ class LecturersController < ApplicationController
   end
 
   def show
+    @lecturer = Lecturer.find(params[:id])
   end
 
   def new

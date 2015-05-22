@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   get '/admin', to: redirect('/institutes')
 
   resources :polls, only: [:index, :show, :create, :update]
-  resources :institutes
+  resources :institutes, except: :show
   resources :lecturers
-  resources :questions, only: [:index, :new, :create, :destroy, :edit, :update]
+  resources :questions, except: :show
   resources :employments, only: [:destroy]
   resources :forms
   resources :votes
