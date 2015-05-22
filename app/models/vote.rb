@@ -31,6 +31,15 @@ class Vote < ActiveRecord::Base
     end
   end
 
+  def self.question_search (search)
+    unless  search.blank?
+      search.downcase!
+      Vote.joins('JOIN questions ON questions.id = votes.question_id').where('LOWER(questions.content) LIKE ?', "%#{search}%")
+    else
+      Vote.all
+    end
+  end
+
   def self.ip_search (search)
     unless search.blank?
       Vote.where('ip LIKE ?', "%#{search}%")
