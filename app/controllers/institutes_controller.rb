@@ -32,15 +32,19 @@ class InstitutesController < ApplicationController
 
 	def update
 		institute = Institute.find(params[:id])
-		employment = Employment.new
-		employment.institute = institute
-		employment.lecturer = Lecturer.find(new_employment_params[:lecturers].to_i)
-		if employment.valid?
-			employment.save
-			flash[:success] = 'Wykładowca pomyślnie dodany do instytutu'
-			redirect_to edit_institute_path(institute.id)
+		unless params[:institute].blank?
+			employment = Employment.new
+			employment.institute = institute
+			employment.lecturer = Lecturer.find(new_employment_params[:lecturers].to_i)
+			if employment.valid?
+				employment.save
+				flash[:success] = 'Wykładowca pomyślnie dodany do instytutu'
+				redirect_to edit_institute_path(institute.id)
+			else
+				flash[:error] = 'Wykładowcy nie udało się dodać do instytutu'
+				redirect_to edit_institute_path(institute.id)
+			end
 		else
-			flash[:error] = 'Wykładowcy nie udało się dodać do instytutu'
 			redirect_to edit_institute_path(institute.id)
 		end
 	end

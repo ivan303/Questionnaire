@@ -5,7 +5,11 @@ class PollsController < ApplicationController
   end
 
   def create
-    redirect_to  poll_path(params[:institute][:id])
+    unless params[:institute].blank?
+      redirect_to  poll_path(params[:institute][:id])
+    else
+      redirect_to polls_path
+    end
   end
 
   def show

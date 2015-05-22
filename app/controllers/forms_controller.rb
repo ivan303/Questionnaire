@@ -18,22 +18,26 @@ class FormsController < ApplicationController
     questions = Question.all.as_json
     institute = Institute.find(params[:institute_id])
     form = Form.new
-    params[:form][:votes_attributes].each do |lecturer|
-      form.votes << Vote.new(
-          lecturer: Lecturer.find(lecturer[1][:id].to_i),
-          institute: institute,
-          question_id: questions.shift["id"],
-          ip: request.remote_ip
-      )
-    end
+    unless params[:form].blank?
+      params[:form][:votes_attributes].each do |lecturer|
+        form.votes << Vote.new(
+            lecturer: Lecturer.find(lecturer[1][:id].to_i),
+            institute: institute,
+            question_id: questions.shift["id"],
+            ip: request.remote_ip
+        )
+      end
 
-    if form.valid?
-      form.save
-      flash[:success] = "Dziękujemy za udział w ankiecie!"
-      redirect_to polls_path
+      if form.valid?
+        form.save
+        flash[:success] = "Dziękujemy za udział w ankiecie!"
+        redirect_to polls_path
+      else
+        flash[:error] = "Głosowanie nie powiodło się"
+        redirect_to polls_path
+      end
     else
-      flash[:error] = "Głosowanie nie powiodło się"
-      redirect_to polls_path
+      redirect_to poll_path(institute.id)
     end
   end
 

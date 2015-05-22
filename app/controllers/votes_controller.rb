@@ -6,7 +6,7 @@ class VotesController < ApplicationController
   def index
     # @direction = params[:direction]
     # @sort = params[:sort]
-    byebug
+    # byebug
     @votes = Vote.lastname_search(params[:lastname_search])
                  .firstname_search(params[:firstname_search])
                  .institute_search(params[:institute_search])
