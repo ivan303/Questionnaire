@@ -28,8 +28,13 @@ class LecturersController < ApplicationController
 
   def destroy
     lecturer = Lecturer.find(params[:id])
-    lecturer.delete
-    redirect_to lecturers_path
+    if lecturer.destroy
+      flash[:success] = "Wykładowca pomyślnie usunięty"
+      redirect_to lecturers_path
+    else
+      flash[:error] = "Wykładowcy nie udało się usunąć"
+      redirect_to lecturers_path
+    end
   end
 
   private

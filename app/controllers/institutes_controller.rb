@@ -14,7 +14,7 @@ class InstitutesController < ApplicationController
 		@institute = Institute.find(params[:id])
 		@lecturers = @institute.lecturers
 		@employments = @institute.employments
-		
+
 		@other_lecturers = Lecturer.all - @lecturers
 
 	end
@@ -48,7 +48,17 @@ class InstitutesController < ApplicationController
 			flash[:error] = 'Wykładowcy nie udało się dodać do instytutu'
 			redirect_to edit_institute_path(institute.id)
 		end
+	end
 
+	def destroy
+		institute = Institute.find(params[:id])
+		if institute.destroy
+			flash[:success] = "Instytut pomyślnie usunięty"
+			redirect_to institutes_path
+		else
+			flash[:error] = "Instytutu nie udało się usunąć"
+			redirect_to institutes_path
+		end
 	end
 
 	private
