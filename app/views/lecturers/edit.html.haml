@@ -1,0 +1,8 @@
+.row
+  .col-lg-4.col-lg-offset-4
+    = simple_form_for @lecturer do |f|
+      .inputs
+        = f.input :firstname, label: "Imię"
+        = f.input :lastname, label: "Nazwisko"
+      .actions
+        = f.button :submit, "Zapisz", class: "btn btn-primary"

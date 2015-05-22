@@ -26,6 +26,22 @@ class LecturersController < ApplicationController
     end
   end
 
+  def edit
+    @lecturer = Lecturer.find(params[:id])
+  end
+
+  def update
+    @lecturer = Lecturer.find(params[:id])
+    @lecturer.update(lecturer_params)
+    if @lecturer.save
+      flash[:success] = "Wykładowca pomyślnie zmodyfikowany"
+      redirect_to lecturers_path
+    else
+      flash[:error] = "Wykładowcy nie udało się zmodyfikować"
+      redirect_to lecturers_path
+    end
+  end
+
   def destroy
     lecturer = Lecturer.find(params[:id])
     if lecturer.destroy
@@ -42,4 +58,5 @@ class LecturersController < ApplicationController
     def lecturer_params
       params.require(:lecturer).permit(:firstname, :lastname)
     end
+
 end

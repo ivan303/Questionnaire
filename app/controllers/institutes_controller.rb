@@ -10,15 +10,6 @@ class InstitutesController < ApplicationController
 	def show
 	end
 
-	def edit
-		@institute = Institute.find(params[:id])
-		@lecturers = @institute.lecturers
-		@employments = @institute.employments
-
-		@other_lecturers = Lecturer.all - @lecturers
-
-	end
-
 	def new
 		@institute = Institute.new
 	end
@@ -33,6 +24,13 @@ class InstitutesController < ApplicationController
 			flash[:error] = 'Instytutu nie udało się utworzyć'
 			redirect_to institutes_path
 		end
+	end
+
+	def edit
+		@institute = Institute.find(params[:id])
+		@lecturers = @institute.lecturers
+		@other_lecturers = Lecturer.all - @lecturers
+		@employments = @institute.employments
 	end
 
 	def update
@@ -53,10 +51,10 @@ class InstitutesController < ApplicationController
 	def destroy
 		institute = Institute.find(params[:id])
 		if institute.destroy
-			flash[:success] = "Instytut pomyślnie usunięty"
+			flash[:success] = 'Instytut pomyślnie usunięty'
 			redirect_to institutes_path
 		else
-			flash[:error] = "Instytutu nie udało się usunąć"
+			flash[:error] = 'Instytutu nie udało się usunąć'
 			redirect_to institutes_path
 		end
 	end
