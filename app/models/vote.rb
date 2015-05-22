@@ -39,18 +39,17 @@ class Vote < ActiveRecord::Base
     end
   end
 
-  def self.custom_sort (sort_by)
+  def self.custom_sort (sort_by, direction)
     unless sort_by.blank?
-      # byebug
-      # Vote.all
+      direction = %w[asc desc].include?(direction) ? direction : "asc"
       case sort_by
-        when "institute_id" then Vote.joins('JOIN institutes ON institutes.id = votes.institute_id').order('institutes.name')
-        when "lecturer_id" then Vote.joins('JOIN lecturers ON lecturers.id = votes.lecturer_id').order('lecturers.lastname')
-        when "question_id" then Vote.joins('JOIN questions ON questions.id = votes.question_id').order('questions.content')
-        when "ip" then Vote.order('ip')
+        when "institute_id" then Vote.joins('JOIN institutes ON institutes.id = votes.institute_id').order('institutes.name' + ' ' + direction)
+        when "lecturer_id" then Vote.joins('JOIN lecturers ON lecturers.id = votes.lecturer_id').order('lecturers.lastname' + ' ' + direction)
+        when "question_id" then Vote.joins('JOIN questions ON questions.id = votes.question_id').order('questions.content' + ' ' + direction)
+        when "ip" then Vote.order('ip' + ' ' + direction)
+        else Vote.all
       end
     else
-      # byebug
       Vote.all
     end
   end

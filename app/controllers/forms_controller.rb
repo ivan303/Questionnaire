@@ -29,16 +29,24 @@ class FormsController < ApplicationController
 
     if form.valid?
       form.save
+      flash[:success] = "Dziękujemy za udział w ankiecie!"
+      redirect_to polls_path
     else
-      # TODO
+      flash[:error] = "Głosowanie nie powiodło się"
+      redirect_to polls_path
     end
-    redirect_to polls_path
   end
 
   def destroy
     form = Form.find(params[:id])
-    form.destroy
-    redirect_to forms_path
+    if form.destroy
+      flash[:success] = "Formularz pomyślnie usunięty"
+      redirect_to forms_path
+    else
+      flash[:error] = "Formularza nie udało się usunąć"
+      redirect_to forms_paths
+    end
+
   end
 
   private

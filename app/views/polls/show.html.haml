@@ -1,4 +1,7 @@
-.row{:style => "margin-top: 80px"}
+.row
+  .col-lg-8.col-lg-offset-2.form-centered
+    %h3 Odpowiedz na poniższe pytania
+.row{:style => "margin-top: 40px"}
   .col-lg-8.col-lg-offset-2.form-centered
     =bootstrap_form_for @form, :method => :post, :url => forms_path do |f|
       .inputs#questions_inputs
@@ -9,5 +12,3 @@
           %br
       .actions
         =f.submit "Głosuj", class: "btn btn-lg btn-primary"
-
--#lambda { |a| "id#{q["id"]}" }   ew można dodać jako value_method połącznie id pytania z id lecrurera
