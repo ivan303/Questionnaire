@@ -37,6 +37,15 @@ table tr th {
   font-size: 16px;
 }
 
+#questions_inputs .form-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.big-label {
+  font-size: 20px;
+}
+
 .form-centered {
   text-align: center;
 }
@@ -44,6 +53,17 @@ table tr th {
 .form-group .control-label {
   font-size: 16px;
 }
+
+#app_nav {
+  .navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+  }
+  .navbar-brand {float:none;}
+}
+
 
 .digg_pagination {
   background: white;

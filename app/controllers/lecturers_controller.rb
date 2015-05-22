@@ -18,9 +18,11 @@ class LecturersController < ApplicationController
     lecturer = Lecturer.new(lecturer_params)
     if lecturer.valid?
       lecturer.save
+      flash[:success] = "Wykładowca pomyślnie utworzony"
       redirect_to lecturers_path
     else
-      # TODO
+      flash[:error] = "Wykładowcy nie udało się utworzyć"
+      redirect_to lecturers_path
     end
   end
 

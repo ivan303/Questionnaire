@@ -9,32 +9,10 @@
     = javascript_include_tag 'application'
 
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top
+    %nav.navbar.navbar-default.navbar-fixed-top#app_nav
       .container.col-lg-8.col-lg-offset-2
         .navbar-header
-          %span.navbar-brand Ankieta
-        -#.navbar-collapse.collapse
-        -#  %ul.nav.navbar-nav.navbar-right
-        -#    %li.active
-        -#      = link_to "Home", root_path
-          -#  %li.dropdown.active
-          -#    %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown"}
-          -#      = current_user ? current_user.firstname : "Account"
-          -#      %b.caret
-          -#    %ul.dropdown-menu
-          -#      -if current_user
-          -#        %li
-          -#          = link_to "Profile", user_path(current_user)
-          -#        %li
-          -#          = link_to "Edit account", edit_user_registration_path
-          -#        %li.divider
-          -#        %li
-          -#          = link_to "Sign out", destroy_user_session_path, method: "delete"
-          -#      -else
-          -#        %li
-          -#          = link_to "Sign in", new_user_session_path
-          -#        %li
-          -#          = link_to "Sign up", new_user_registration_path
+          %span.navbar-brand.big-label Ankieta
     .container
       .row
         .col-lg-8.col-lg-offset-2
