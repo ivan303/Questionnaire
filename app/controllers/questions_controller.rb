@@ -11,18 +11,20 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
-  def edit
-    @question = Question.find(params[:id])
-  end
-
   def create
     question = Question.new(question_params)
     if question.valid?
       question.save
+      flash[:success] = 'Pytanie pomyślnie utworzone'
       redirect_to questions_path
     else
-      # TODO
+      flash[:error] = 'Pytania nie udało się utworzyć'
+      redirect_to questions_path
     end
+  end
+
+  def edit
+    @question = Question.find(params[:id])
   end
 
   def update
@@ -40,8 +42,14 @@ class QuestionsController < ApplicationController
 
   def destroy
     question = Question.find(params[:id])
-    question.delete
-    redirect_to questions_path
+    if question.destroy
+      flash[:success] = 'Pytanie pomyślnie usunięte'
+      redirect_to questions_path
+    else
+      flash[:error] = 'Pytania nie udało się usunąć'
+      redirect_to questions_path
+    end
+
   end
 
   private
