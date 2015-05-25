@@ -2,6 +2,7 @@ class VotesController < ApplicationController
 
   layout "admin"
   before_filter :authenticate
+  # before_filter :set_params
 
   def index
     # @direction = params[:direction]
@@ -16,5 +17,9 @@ class VotesController < ApplicationController
                  .paginate(:per_page => 30, :page => params[:page])
   end
 
+  # def set_params
+  #   @direction = params[:direction]
+  #   @sort = params[:sort]
+  # end
 
 end

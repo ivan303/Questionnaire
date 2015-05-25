@@ -1,8 +1,9 @@
 .row
   .col-lg-2
     = bootstrap_form_tag url: '/votes', :method => 'get' do |f|
-      -#= hidden_field :direction, params["direction"] ? params["direction"] : ""
-      -#= hidden_field :sort, params["sort"]
+      -#-byebug
+      -#= hidden_field :direction, @direction
+      -#= hidden_field :sort, @sort
       = f.text_field :lastname_search, label: "Nazwisko"#, params[:search]
       = f.text_field :firstname_search, label: "Imię"
       = f.text_field :institute_search, label: "Instytut"
@@ -29,7 +30,7 @@
         -@votes.each do |vote|
           %tr
             %td= vote.institute.name
-            %td= vote.lecturer.lastname + " " + vote.lecturer.firstname
+            %td= vote.lecturer.title + " " + vote.lecturer.firstname + " " + vote.lecturer.lastname
             %td= vote.question.content
             %td= vote.ip
             %td

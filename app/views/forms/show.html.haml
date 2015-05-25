@@ -15,7 +15,7 @@
         -@form.votes.each do |vote|
           %tr
             %td= vote.institute.name
-            %td= vote.lecturer.lastname + " " + vote.lecturer.firstname
+            %td= vote.lecturer.title + " " + vote.lecturer.firstname + " " + vote.lecturer.lastname
             %td= vote.question.content
             %td= vote.ip
             %td

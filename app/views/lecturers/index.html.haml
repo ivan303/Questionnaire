@@ -3,11 +3,11 @@
     -unless @lecturers.blank?
       %table.table.table-condensed
         %tr
-          %th= 'Nazwisko i imię'
+          %th= 'Imię i nazwisko'
           %th= 'Akcje'
         -@lecturers.each do |lecturer|
           %tr
-            %td= lecturer.lastname + " " + lecturer.firstname
+            %td= lecturer.title + " " + lecturer.firstname + " " + lecturer.lastname
             %td
               =link_to "Szczegóły", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
               =link_to "Edytuj", edit_lecturer_path(lecturer[:id]), class: 'btn btn-primary'

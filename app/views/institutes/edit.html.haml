@@ -3,11 +3,11 @@
     -unless @lecturers.blank?
       %table.table.table-condensed
         %tr
-          %th= 'Nazwisko i imię'
+          %th= 'Wykładowca'
           %th{colspan: 2}= 'Actions'
         -@lecturers.each do |lecturer|
           %tr
-            %td=lecturer.lastname + ' ' + lecturer.firstname
+            %td=lecturer.title + ' ' + lecturer.firstname + ' ' + lecturer.lastname
             %td
               =link_to "Szczegóły", lecturer_path(lecturer[:id]), class: 'btn btn-primary'
               =link_to "Usuń z instytutu", employment_path(@employments.find_by(lecturer_id: lecturer.id).id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
@@ -17,6 +17,6 @@
   .col-lg-4.col-lg-offset-4
     = simple_form_for @institute, :method => :patch, html: { class: 'form-horizontal' } do |f|
       .inputs
-        = f.input :lecturers, collection: @other_lecturers, label: 'Wykładowcy spoza instytutu', :label_method => lambda { |lect| "#{lect.lastname} #{lect.firstname}" }, :include_blank => false
+        = f.input :lecturers, collection: @other_lecturers, label: 'Wykładowcy spoza instytutu', :label_method => lambda { |lect| "#{lect.title} #{lect.firstname} #{lect.lastname}" }, :include_blank => false
       .action
         = f.button :submit, 'Dodaj wykładowcę', class: 'btn btn-primary'

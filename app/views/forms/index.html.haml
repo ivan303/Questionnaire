@@ -17,8 +17,12 @@
           %th
         -@forms.each do |form|
           %tr
-            %td= form.votes.first.institute.name
-            %td= form.votes.last.ip
+            -unless form.votes.blank?
+              %td= form.votes.first.institute.name
+              %td= form.votes.last.ip
+            -else
+              -# TODO Zrobić to ładniej !!! np. usuwać kwestionariusz po ostatnim usuniętym głosie
+              %td{:colspan => 2} Brak głosów dla tego kwestionariusza
             %td
               =link_to "Szczegóły", form_path(form[:id]), class: 'btn btn-primary'
               =link_to "Usuń", form_path(form.id), :method => 'delete', data: { confirm: "Czy aby na pewno?" }, class: 'btn btn-primary'
