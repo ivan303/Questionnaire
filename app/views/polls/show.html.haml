@@ -8,7 +8,7 @@
         =hidden_field_tag(:institute_id, @institute.id)
         =f.fields_for :votes do |g|
           -q = @questions.shift
-          =g.collection_select :id, @lecturers, :id,  lambda { |lect| "#{lect.title} #{lect.firstname} #{lect.lastname}"  },  label: "#{q['content']}"
+          =g.collection_select :id, @lecturers.order(:lastname, :firstname), :id,  lambda { |lect| "#{lect.title} #{lect.firstname} #{lect.lastname}"  },  label: "#{q['content']}"
           %br
       .actions
         =f.submit "Głosuj", class: "btn btn-lg btn-primary"
