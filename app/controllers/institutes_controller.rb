@@ -25,8 +25,8 @@ class InstitutesController < ApplicationController
 
 	def edit
 		@institute = Institute.find(params[:id])
-		@lecturers = @institute.lecturers
-		@other_lecturers = Lecturer.all - @lecturers
+		@lecturers = @institute.lecturers.order(:lastname, :firstname)
+		@other_lecturers = Lecturer.all.order(:lastname, :firstname) - @lecturers
 		@employments = @institute.employments
 	end
 
